@@ -2,7 +2,7 @@ angular.module('cdfinance').controller('LoginController', LoginController);
 
 function LoginController($http, $location, $window, AuthFactory, jwtHelper) {
   var vm = this;
-  
+   
   vm.isLoggedIn = function() {
     if (AuthFactory.isLoggedIn) {
       return true;
@@ -27,7 +27,10 @@ function LoginController($http, $location, $window, AuthFactory, jwtHelper) {
           vm.loggedInUser = decodedToken.username;
         }
       }).catch(function(error) {
-        console.log(error);
+        if(error){
+          vm.error = error.data;
+          console.log(error);
+        }
       })
     }
   }

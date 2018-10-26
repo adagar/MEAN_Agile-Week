@@ -1,4 +1,4 @@
-angular.module('cdfinance', ['ngRoute', 'angular-jwt']).config(config).run(run);
+angular.module('cdfinance', ['ngRoute', 'angular-jwt', 'angularUtils.directives.dirPagination']).config(config).run(run);
 
 function config($httpProvider, $routeProvider) {
   $httpProvider.interceptors.push('AuthInterceptor');
@@ -6,6 +6,8 @@ function config($httpProvider, $routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'angular-app/main/main.html',
+      controller: MainController,
+      controllerAs: "vm",
       access: {
         restricted : false
       }
@@ -36,8 +38,8 @@ function config($httpProvider, $routeProvider) {
     })
     .when('/find', {
       templateUrl: 'angular-app/find/find.html',
-      controller: FindController,
-      controllerAs: 'vm',
+      // controller: FindController,
+      // controllerAs: 'vm',
       access: {
         restricted: false
       }
